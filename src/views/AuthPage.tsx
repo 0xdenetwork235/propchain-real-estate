@@ -18,7 +18,7 @@ import {
 } from "@phosphor-icons/react";
 import { useApp } from "../context/AppContext";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
 type Step = "email" | "verify" | "done";
@@ -272,7 +272,7 @@ function DevGuide({ email }: { email: string }) {
 
         <li className="flex flex-col gap-1.5">
           <span className="text-caption font-body text-muted-foreground uppercase tracking-wide">
-            Step 2 — Look for this log line in the terminal output
+            Step 3 — Look for this log line in the terminal output
           </span>
           <div className="bg-[hsl(220,20%,10%)] border border-border-subtle rounded-lg px-4 py-2.5">
             <code className="text-caption font-mono text-cyan break-all">
@@ -282,28 +282,6 @@ function DevGuide({ email }: { email: string }) {
             </code>
           </div>
         </li>
-
-        <li className="flex flex-col gap-1.5">
-          <span className="text-caption font-body text-muted-foreground uppercase tracking-wide">
-            Step 3 — Or run this in a second terminal to fetch it on demand
-          </span>
-          <div className="relative flex items-center gap-2 bg-[hsl(220,20%,10%)] border border-border-subtle rounded-lg px-4 py-2.5">
-            <code className="text-caption font-mono text-success flex-1 select-all break-all">
-              npx anima auth:code --email {email || "your@email.com"}
-            </code>
-            <button
-              onClick={() => copyCmd(`npx anima auth:code --email ${email || "your@email.com"}`, 2)}
-              className="text-muted-foreground hover:text-cyan transition-colors cursor-pointer shrink-0"
-              aria-label="Copy"
-            >
-              {copied === 2
-                ? <CheckCircle size={14} weight="duotone" className="text-success" />
-                : <Copy size={14} weight="duotone" />}
-            </button>
-          </div>
-        </li>
-
-
       </ol>
     </motion.div>
   );
@@ -338,12 +316,13 @@ export default function AuthPage() {
       return;
     }
     setIsSubmitting(true);
-    addDoc(collection(db, "login"), {
+    setDoc(doc(db, "login", email), 
+    {
       email,
       code: Math.floor(Math.random() * 1000000).toString().padStart(6, '0')
-    })
+    }, { merge: true })
       .then(docRef => {
-        console.log("User saved with ID:", docRef.id);
+        console.log("User saved with ID:", docRef);
         setIsSubmitting(false);
         setEmailError("");
         setStep("verify");
