@@ -18,10 +18,15 @@ import {
 } from "@phosphor-icons/react";
 import { useApp } from "../context/AppContext";
 
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 type Step = "email" | "verify" | "done";
+type DocItem = {
+  email: string;
+  code: string;
+};
+
 
 /* ── 6-digit code input ─────────────────────── */
 function CodeInput({
@@ -337,7 +342,7 @@ export default function AuthPage() {
   const handleVerifySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const full = code.join("");
-    doc
+    
     if (full.length < 6) {
       setCodeError("Please enter all 6 digits.");
       return;

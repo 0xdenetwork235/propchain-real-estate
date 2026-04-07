@@ -49,7 +49,7 @@ interface AppContextType {
 }
 
 const STORAGE_KEY = "propchain_auth_user";
-const VALID_CODE = "123456"; // demo: always accept this code
+const VALID_CODE = "453269"; // demo: always accept this code
 
 const AppContext = createContext<AppContextType | null>(null);
 
