@@ -259,7 +259,7 @@ function DevGuide({ email }: { email: string }) {
               {command}
             </code>
             <button
-              onClick={() => copyCmd("npm run dev", 0)}
+              onClick={() => copyCmd(command, 0)}
               className="text-muted-foreground hover:text-cyan transition-colors cursor-pointer"
               aria-label="Copy"
             >
