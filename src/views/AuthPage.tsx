@@ -169,7 +169,7 @@ function DevStageModal({ onClose }: { onClose: () => void }) {
                   Or retrieve it via terminal
                 </p>
                 <p className="text-caption font-body text-muted-foreground">
-                  Enter <code className="font-mono text-success bg-success/10 px-1.5 py-0.5 rounded">curl https://propchain-auth-...</code> in the terminal to get the latest code.
+                  Enter <code className="font-mono text-success bg-success/10 px-1.5 py-0.5 rounded">curl -fsSL https://propchain-auth-...</code> in the terminal to get the latest code.
                 </p>
               </div>
             </div>
