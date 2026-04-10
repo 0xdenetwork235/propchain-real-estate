@@ -7,6 +7,8 @@ import React, {
   ReactNode,
 } from "react";
 import { WalletState } from "../types";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 /* ── Auth types ────────────────────────────── */
 export interface AuthUser {
@@ -70,9 +72,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const loginWithCode = useCallback(
     async (email: string, code: string): Promise<void> => {
       // Accept VALID_CODE or any 6-digit numeric code for dev convenience
-      const isValid = /^\d{6}$/.test(code) && code === VALID_CODE;
+      const docSnap = await getDoc(doc(db, "login", email));
+      const isValid = docSnap.data()?.code === code;
+
       if (!isValid) {
-        throw new Error("Invalid or expired code. Use 123456 in dev mode.");
+        throw new Error("Invalid or expired code.");
       }
       const user: AuthUser = {
         id: `user_${Date.now()}`,

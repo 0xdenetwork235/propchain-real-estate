@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -19,6 +19,9 @@ import Portfolio from "./views/Portfolio";
 import Transactions from "./views/Transactions";
 import Learn from "./views/Learn";
 import AuthPage from "./views/AuthPage";
+import Payments from "./views/Payments";
+import Escrow from "./views/Escrow";
+import Schedules from "./views/Schedules";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -69,6 +72,9 @@ function AppShell() {
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/payments" element={<Payments />} />
+          <Route path="/escrow" element={<Escrow />} />
+          <Route path="/schedules" element={<Schedules />} />
           <Route path="*" element={<Navigate to="/marketplace" replace />} />
         </Routes>
       </div>

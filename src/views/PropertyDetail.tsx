@@ -18,8 +18,8 @@ import {
 import { useMutation } from "@animaapp/playground-react-sdk";
 import { mockProperties } from "../data/mockData";
 import { useApp } from "../context/AppContext";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Progress } from "../components/ui/progress";
 
 export default function PropertyDetail() {
   const { id } = useParams<{ id: string }>();

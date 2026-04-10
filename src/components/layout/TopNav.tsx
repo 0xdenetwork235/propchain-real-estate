@@ -14,6 +14,9 @@ import {
   Copy,
   UserCircle,
   SignIn,
+  Lightning,
+  Handshake,
+  CalendarCheck,
 } from "@phosphor-icons/react";
 import { useApp } from "../../context/AppContext";
 
@@ -21,19 +24,23 @@ const navLinks = [
   { label: "Marketplace", path: "/marketplace", icon: Buildings },
   { label: "My Portfolio", path: "/portfolio", icon: ChartPieSlice },
   { label: "Transactions", path: "/transactions", icon: ArrowsLeftRight },
+  { label: "Payments", path: "/payments", icon: Lightning },
+  { label: "Escrow", path: "/escrow", icon: Handshake },
+  { label: "Schedules", path: "/schedules", icon: CalendarCheck },
   { label: "Learn", path: "/learn", icon: GraduationCap },
 ];
 
 export default function TopNav() {
   const location = useLocation();
   const isLanding = useMatch("/");
+  const isAuth = useMatch("/auth");
   const navigate = useNavigate();
   const { wallet, disconnectWallet, setWalletModalOpen, authUser, isAnonymous, logoutUser } = useApp();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
   // All hooks above — safe to conditionally return now
-  if (isLanding) return null;
+  if (isLanding || isAuth) return null;
 
   const shortAddress = wallet.address
     ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
