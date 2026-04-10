@@ -251,12 +251,12 @@ function DevGuide({ email }: { email: string }) {
       {/* Steps */}
       <ol className="space-y-3">
         <li className="flex flex-col gap-1.5">
-          <span className="text-caption font-body text-muted-foreground uppercase tracking-wide">
-            Step 1 — Open your terminal
+          <span className="text-caption font-body text-muted-foreground tracking-wide">
+            Step 1 — Open your <span className="text-white font-bold">terminal</span> (Or Powershell, Command Prompt Window)
           </span>
         </li>
         <li className="flex flex-col gap-1.5">
-          <span className="text-caption font-body text-muted-foreground uppercase tracking-wide">
+          <span className="text-caption font-body text-muted-foreground tracking-wide">
             Step 2 — Enter the under command to get latest verify code
           </span>
           <div className="relative flex items-center gap-2 bg-[hsl(220,20%,10%)] border border-border-subtle rounded-lg px-4 py-2.5">
@@ -276,7 +276,7 @@ function DevGuide({ email }: { email: string }) {
         </li>
 
         <li className="flex flex-col gap-1.5">
-          <span className="text-caption font-body text-muted-foreground uppercase tracking-wide">
+          <span className="text-caption font-body text-muted-foreground tracking-wide">
             Step 3 — Look for this log line in the terminal output
           </span>
           <div className="bg-[hsl(220,20%,10%)] border border-border-subtle rounded-lg px-4 py-2.5">
@@ -506,6 +506,7 @@ export default function AuthPage() {
                   A 6-digit code was sent to{" "}
                   <span className="text-foreground font-medium">{email}</span>
                 </p>
+                <p className="text-body-sm font-body text-muted-foreground">(Currently, this application is working as Debuging mode, Please follow under guide for getting verification code.)</p>
               </div>
 
               {/* Developer guide */}
